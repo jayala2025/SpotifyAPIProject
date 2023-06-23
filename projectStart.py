@@ -1,6 +1,7 @@
 import requests
 import os
-import spotipy  
+import spotipy
+import json
 from spotipy.oauth2 import SpotifyClientCredentials 
 
 # client_id = '7d90581a1f7e4320b41671ac9deab569'
@@ -22,4 +23,10 @@ baseURL = 'https://api.spotify.com/v1/'
 track_id = input('Enter track id: ')
 trackInfo = requests.get(baseURL + 'tracks/' + track_id, headers=headers)
 
-print(trackInfo.json())
+trackName = trackInfo.json()['name']
+trackArtists = trackInfo.json()['artists'][0]['name']
+
+print(f"{trackName} by {trackArtists}")
+
+
+
